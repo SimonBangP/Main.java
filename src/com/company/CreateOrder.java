@@ -1,12 +1,12 @@
 package com.company;
 
 public class CreateOrder {
-private int pizzaNumber;
+private int pizzaAmount;
 private double orderTime;
 private double pickupTime;
 
 public CreateOrder (int pizzaNumber, double orderTime, double pickupTime){
-    this.pizzaNumber = pizzaNumber;
+    this.pizzaAmount = pizzaNumber;
 
     this.orderTime = orderTime;
     this.pickupTime = pickupTime;
