@@ -1,24 +1,19 @@
 package com.company;
 
-import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.Scanner;
 
+//Næsten færdige program
 public class Main {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         Order[] orders = new Order[10];
 
-        //Scanner input = new Scanner(new File("menuCard.txt"));
+
         Scanner console = new Scanner(System.in);
         int answer = 6;
         System.out.println("\t\t\t\t\t***** Velkommen til Mario's Pizzabar! *****\nMed dette program får du en masse muligheder som simplificer Mario's arbejde");
 
-        /* orders[0] = new CreateOrder(1, 11, 12);
-        orders[1] = new CreateOrder(2,  11, 12);
-        orders[2] = new CreateOrder(3,  11, 12); */
+
 
        while (answer != 5){
 
@@ -59,23 +54,32 @@ public class Main {
 
     }
 public static Order[] createOrder (Scanner console, Order[] orderList){
-    int pizzaID = 0;
-    System.out.println("How many pizzas do you want to order? ");
+    int pizzaNumber = 0;
+
+
+
+
+    System.out.println("Amount of pizzas: ");
     int pizzaAmountInput = console.nextInt();
 
-    Order order = new Order();
+    Order order = new Order(pizzaAmountInput);
 
     for (int i = 0; i < pizzaAmountInput; i++) {
-        System.out.println("Enter the number of the Pizza you want");
-        pizzaID = console.nextInt();
+        System.out.println("pizza number " + (i+1));
+
+        pizzaNumber = console.nextInt();
 
         //for(int j =0; j < pizzaAmountInput; j++){
 
-            order.getPizzaNumber()[i] = pizzaID;
+            order.getPizzaAmount()[i] = pizzaNumber;
 
 
         //}
     }
+
+    System.out.println("Customer name: ");
+    String customerName = console.next();
+    order.setCustomerName(customerName);
 
     System.out.println("Enter the time of ordering. (ex 12,40");
         double orderTime = console.nextDouble();
@@ -100,7 +104,7 @@ public static Order[] createOrder (Scanner console, Order[] orderList){
 
         for (int i = 0; i < orderList.length; i++){
             if (orderList[i] == null){
-                orderList[i] = new Order(order.getPizzaNumber(), order.getOrderTime(), order.getOrderPickUp());
+                orderList[i] = new Order(order.getCustomerName(), order.getPizzaAmount(), order.getOrderTime(), order.getOrderPickUp());
             break;
             }
 
@@ -111,7 +115,7 @@ public static Order[] createOrder (Scanner console, Order[] orderList){
     public static void showOrders(Order[] orderList){
         for (int i = 0; i < orderList.length; i++){
 
-            System.out.println(orderList[i]);
+            System.out.println("Order number: " + (i +1 ) + ": " + "\n" + orderList[i]);
             System.out.println();
 
         }
@@ -119,7 +123,7 @@ public static Order[] createOrder (Scanner console, Order[] orderList){
     public static void deleteOrder (Scanner console, Order[] orders){
 
         for (int i = 0; i < orders.length; i++) {
-            System.out.println("order number " + (i + 1) + ":" + "\n\n" + orders[i] );
+            System.out.println("Order number " + (i + 1) + ": " + "\n\n" + orders[i] );
             System.out.println("");
         }
         System.out.println("Enter the number of the order you want to change");
