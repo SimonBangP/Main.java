@@ -1,26 +1,29 @@
 package com.company;
 
-public class CreateOrder {
-private int pizzaAmount;
+import java.util.Arrays;
+
+public class Order {
+private int[] pizzaNumber = new int[10];
 private double orderTime;
 private double pickupTime;
 
-public CreateOrder (int pizzaNumber, double orderTime, double pickupTime){
-    this.pizzaAmount = pizzaNumber;
+public Order(){}
 
+public Order (int [] pizzaAmount, double orderTime, double pickupTime){
+    this.pizzaNumber = pizzaAmount;
     this.orderTime = orderTime;
     this.pickupTime = pickupTime;
 
 }
 public String toString(){
-    return ("Pizza number: " + pizzaNumber +  "\nOrderTime: " + orderTime + "\nPickup time" +pickupTime);
+    return ("Pizza number: " + Arrays.toString(pizzaNumber) +  "\nOrderTime: " + orderTime + "\nPickup time: " +pickupTime);
 }
 
-    public int getPizzaNumber() {
+    public int[] getPizzaNumber() {
         return pizzaNumber;
     }
 
-    public void setPizzaNumber(int pizzaNumber) {
+    public void setPizzaAmount(int[] pizzaNumber) {
         this.pizzaNumber = pizzaNumber;
     }
 

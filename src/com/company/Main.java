@@ -1,11 +1,16 @@
 package com.company;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
-        CreateOrder[] orders = new CreateOrder[10];
+    public static void main(String[] args) throws FileNotFoundException {
+        Order[] orders = new Order[10];
+        Pizza [] pizzas = new Pizza[5];
+        //Scanner input = new Scanner(new File("menuCard.txt"));
         Scanner console = new Scanner(System.in);
         int answer = 6;
         System.out.println("\t\t\t\t\t***** Velkommen til Mario's Pizzabar! *****\nMed dette program får du en masse muligheder som simplificer Mario's arbejde");
@@ -22,12 +27,13 @@ public class Main {
            switch (answer){
 
                case 1:
-                   System.out.println("How many pizzas do you want to order? ");
-                   int pizzaAmount = console.nextInt();
-                   for (int i = 0; i< pizzaAmount; i++){
-                   getOrder(console, orders, pizzaAmount);
+                  // int pizzaAmount = 0;
+                  //System.out.println("How many pizzas do you want to order? ");
+                   //int pizzaAmount = console.nextInt();
+                   //for (int i = 0; i< pizzaAmount; i++){
+                   getOrder(console, orders , pizzas);
 
-               }
+               //}
                    break;
 
                case 2:
@@ -54,14 +60,29 @@ public class Main {
 
 
     }
-public static CreateOrder[] getOrder (Scanner console, CreateOrder[] orderList, int pizzaAmount){
+public static Order[] getOrder (Scanner console, Order[] orderList, Pizza[] pizzas){
+    int pizzaID = 0;
+    System.out.println("How many pizzas do you want to order? ");
+    int pizzaAmountInput = console.nextInt();
+
+    Order order = new Order();
+
+    for (int i = 0; i < pizzaAmountInput; i++) {
+        System.out.println("Enter the number of the Pizza you want");
+        pizzaID = console.nextInt();
+        int count = 0;
+        for(int j =0; j < order.getPizzaNumber().length; j++){
+            order.getPizzaNumber()[j] = pizzaID;
+
+        }
 
 
-    System.out.println("Enter the number of the Pizza you want");
-        int pizzaNumber = console.nextInt();
+
+    }
 
     System.out.println("Enter the time of ordering. (ex 12,40");
         double orderTime = console.nextDouble();
+        order.setOrderTime(orderTime);
 
     System.out.println("Enter 1 for choosing pickup time or 2 for get order as fast as possible ");
     int answer = console.nextInt();
@@ -69,9 +90,12 @@ public static CreateOrder[] getOrder (Scanner console, CreateOrder[] orderList, 
     if (answer == 1){
         System.out.println("Enter time for pick up the order");
         pickupTime = console.nextDouble();
+        order.setOrderPickUp(pickupTime);
     }
     else {
-        System.out.println("Your order is ready in about 15 minutes");
+        pickupTime = 15.00;
+        order.setOrderPickUp(pickupTime);
+        System.out.println("Your order is ready in about " + pickupTime + " minutes" );
         System.out.println();
     }
 
@@ -79,7 +103,7 @@ public static CreateOrder[] getOrder (Scanner console, CreateOrder[] orderList, 
 
         for (int i = 0; i < orderList.length; i++){
             if (orderList[i] == null){
-                orderList[i] = new CreateOrder(pizzaNumber, orderTime, pickupTime);
+                orderList[i] = new Order(order.getPizzaNumber(), order.getOrderTime(), order.getOrderPickUp());
             break;
             }
 
@@ -87,14 +111,14 @@ public static CreateOrder[] getOrder (Scanner console, CreateOrder[] orderList, 
 
         return orderList;
 }
-    public static void showOrders(CreateOrder[] orderList){
+    public static void showOrders(Order[] orderList){
         for (int i = 0; i < orderList.length; i++){
             System.out.println(orderList[i]);
             System.out.println();
 
         }
 }
-    public static void deleteOrder (Scanner console, CreateOrder[] orders){
+    public static void deleteOrder (Scanner console, Order[] orders){
 
         for (int i = 0; i < orders.length; i++) {
             System.out.println("order number " + (i + 1) + ":" + "\n\n" + orders[i] );
