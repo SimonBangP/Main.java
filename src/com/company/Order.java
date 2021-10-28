@@ -9,8 +9,8 @@ private double pickupTime;
 
 public Order(){}
 
-public Order (int [] pizzaAmount, double orderTime, double pickupTime){
-    this.pizzaNumber = pizzaAmount;
+public Order (int [] pizzaNumber, double orderTime, double pickupTime){
+    this.pizzaNumber = pizzaNumber;
     this.orderTime = orderTime;
     this.pickupTime = pickupTime;
 

@@ -1,5 +1,6 @@
 package com.company;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
@@ -9,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
         Order[] orders = new Order[10];
-        Pizza [] pizzas = new Pizza[5];
+
         //Scanner input = new Scanner(new File("menuCard.txt"));
         Scanner console = new Scanner(System.in);
         int answer = 6;
@@ -27,13 +28,8 @@ public class Main {
            switch (answer){
 
                case 1:
-                  // int pizzaAmount = 0;
-                  //System.out.println("How many pizzas do you want to order? ");
-                   //int pizzaAmount = console.nextInt();
-                   //for (int i = 0; i< pizzaAmount; i++){
-                   getOrder(console, orders , pizzas);
+                   createOrder(console, orders);
 
-               //}
                    break;
 
                case 2:
@@ -45,6 +41,8 @@ public class Main {
                    break;
 
                case 4:
+                   ShowMenuCard();
+
 
                    break;
 
@@ -60,7 +58,7 @@ public class Main {
 
 
     }
-public static Order[] getOrder (Scanner console, Order[] orderList, Pizza[] pizzas){
+public static Order[] createOrder (Scanner console, Order[] orderList){
     int pizzaID = 0;
     System.out.println("How many pizzas do you want to order? ");
     int pizzaAmountInput = console.nextInt();
@@ -70,14 +68,13 @@ public static Order[] getOrder (Scanner console, Order[] orderList, Pizza[] pizz
     for (int i = 0; i < pizzaAmountInput; i++) {
         System.out.println("Enter the number of the Pizza you want");
         pizzaID = console.nextInt();
-        int count = 0;
-        for(int j =0; j < order.getPizzaNumber().length; j++){
-            order.getPizzaNumber()[j] = pizzaID;
 
-        }
+        //for(int j =0; j < pizzaAmountInput; j++){
 
+            order.getPizzaNumber()[i] = pizzaID;
 
 
+        //}
     }
 
     System.out.println("Enter the time of ordering. (ex 12,40");
@@ -88,7 +85,7 @@ public static Order[] getOrder (Scanner console, Order[] orderList, Pizza[] pizz
     int answer = console.nextInt();
     double pickupTime = 0;
     if (answer == 1){
-        System.out.println("Enter time for pick up the order");
+        System.out.println("Enter time for pick up the order (ex 17,00");
         pickupTime = console.nextDouble();
         order.setOrderPickUp(pickupTime);
     }
@@ -113,6 +110,7 @@ public static Order[] getOrder (Scanner console, Order[] orderList, Pizza[] pizz
 }
     public static void showOrders(Order[] orderList){
         for (int i = 0; i < orderList.length; i++){
+
             System.out.println(orderList[i]);
             System.out.println();
 
@@ -130,4 +128,14 @@ public static Order[] getOrder (Scanner console, Order[] orderList, Pizza[] pizz
         orders[answer-1] = null;
     }
 
-}
+    public static void ShowMenuCard ( ){
+        for (int i = 0; i < MenuList.getMenu().length; i++){
+            System.out.println(MenuList.getMenu()[i]);
+            System.out.println();
+
+        }
+
+        }
+    }
+
+

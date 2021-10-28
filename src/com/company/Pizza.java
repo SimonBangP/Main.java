@@ -1,19 +1,19 @@
 package com.company;
 
 public class Pizza {
+    private int pizzaNumber;
     private String pizzaName;
-    private int pizzaID;
     private int pizzaPrice;
 
-    public Pizza (String pizzaName, int pizzaID, int pizzaPrice) {
+    public Pizza (int pizzaNumber, String pizzaName, int pizzaPrice) {
 
+        this.pizzaNumber = pizzaNumber;
         this.pizzaName = pizzaName;
-        this.pizzaID = pizzaID;
         this.pizzaPrice = pizzaPrice;
     }
 
         public String toString () {
-            return ("pizzaName" + pizzaName + "pizzaID" + pizzaID + "pizzaPrice" + pizzaPrice );
+            return ("pizza number: " + pizzaNumber + "." + " \tpizzaName: " + pizzaName + "." +  " \t\tPrice....... " + pizzaPrice );
 
     }
 
@@ -26,11 +26,11 @@ public class Pizza {
     }
 
     public int getPizzaID() {
-        return pizzaID;
+        return pizzaNumber;
     }
 
     public void setPizzaID(int pizzaID) {
-        this.pizzaID = pizzaID;
+        this.pizzaNumber = pizzaID;
     }
 
     public int getPizzaPrice() {
